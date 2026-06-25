@@ -7,12 +7,11 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { LOGIN_BACKGROUND_IMAGE, USER_AVATAR } from "../utils/constants";
 
 const Login = () => {
-  const navigate = useNavigate();
 
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -36,21 +35,17 @@ const Login = () => {
     setErrorMessage(message);
     if (message) return;
 
-    //SignIn or SignUp logic here
     if (!isSignInForm) {
-      //SignUp logic
       createUserWithEmailAndPassword(
         auth,
         email.current.value,
         password.current.value,
       )
         .then((userCredential) => {
-          // Signed up
           const user = userCredential.user;
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL:
-              "https://occ-0-4857-2164.1.nflxso.net/dnm/api/v6/SO2HoVCx33X8phZh2pZZmQ4QgNY/AAAABf6Nh861wNxGfVfN-tmLT432oRrNfJL0WhX7kx22zbQVcA_0D2UCEr8hgENP_LZN2Y6vTrVN2goVV-vVMygWrztxhDzA-zhSfh2f.png?r=e6e",
+            photoURL: USER_AVATAR,
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -62,7 +57,6 @@ const Login = () => {
                   photoURL: photoURL,
                 }),
               );
-              navigate("/browse");
             })
             .catch((error) => {
               setErrorMessage(error.message);
@@ -72,20 +66,15 @@ const Login = () => {
           const errorCode = error.code;
           const errorMessage = error.message;
           setErrorMessage(errorCode + ": " + errorMessage);
-          // ..
         });
     } else {
-      //SignIn logic
       signInWithEmailAndPassword(
         auth,
         email.current.value,
         password.current.value,
       )
         .then((userCredential) => {
-          // Signed in
           const user = userCredential.user;
-          navigate("/browse");
-          // ...
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -100,8 +89,8 @@ const Login = () => {
       <Header />
       <div className="absolute">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/a565a928-abda-47bd-860a-55be00b7fefc/web/IN-en-20260615-TRIFECTA-perspective_7ffb95f0-7b86-4dfa-9920-7f5651418d65_large.jpg"
-          alt="logo"
+          src={LOGIN_BACKGROUND_IMAGE}
+          alt="Background"
         />
       </div>
       <form

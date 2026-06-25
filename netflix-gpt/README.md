@@ -15,6 +15,12 @@
 - Created Redux Store with Redux Slice
 - Implemented SignOut Features
 - Update Profile
+- BugFix: SignUp user displayName and profile picture update
+- BugFix: if the user is not logged in Redirect/browse to Login Page and Vise-Versa
+- Unsubscribed to the onAuthStateChange callback
+- Add Hardcoded values to the constants file
+- Resigter from TMDB API & Create an app and get access token
+- Get Data from TMDB now playing mivies List API
 
 # Features
 - Login / SignUp
