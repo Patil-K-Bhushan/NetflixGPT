@@ -18,14 +18,10 @@ const useMovieTrailer = (movieId, language) => {
 
         const jsonData = await response.json();
 
-        console.log("Videos:", jsonData);
-
         const trailer =
           jsonData.results.find(
             (video) => video.type === "Trailer" && video.site === "YouTube",
           ) || jsonData.results.find((video) => video.site === "YouTube");
-
-        console.log("Selected trailer:", trailer);
 
         dispatch(addTrailerVideo(trailer));
       } catch (err) {
