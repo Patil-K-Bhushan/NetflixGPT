@@ -56,13 +56,13 @@ const Header = () => {
   };
 
   return (
-    <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between items-center">
-      <img className="w-44" src={NetflixGPT} alt="logo" />
+    <div className="absolute w-full px-4 md:px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between items-center flex-col md:flex-row gap-2 md:gap-0">
+      <img className="w-32 md:w-44" src={NetflixGPT} alt="logo" />
       {user && (
-        <div className="flex p-2">
+        <div className="flex flex-wrap items-center justify-center gap-2 p-2">
           {showGptSearch && (
             <select
-              className="p-2 m-2 bg-gray-900 text-white"
+              className="p-2 bg-gray-900 text-white rounded"
               onChange={handleLanguageChange}
             >
               {SUPPORTED_LANGUAGES.map((lang) => (
@@ -73,13 +73,20 @@ const Header = () => {
             </select>
           )}
           <button
-            className="py-2 px-4 mx-4 my-2 text-white bg-purple-600 rounded-lg"
+            className="py-2 px-3 md:px-4 text-sm md:text-base text-white bg-purple-600 rounded-lg whitespace-nowrap"
             onClick={handleGPTSearchClick}
           >
-            {showGptSearch ? "HomePage" : "GPT Search" }
+            {showGptSearch ? "HomePage" : "GPT Search"}
           </button>
-          <img className="w-12 h-12" src={user?.photoURL} alt="user-icon" />
-          <button onClick={handleSignOut} className="font-bold text-white">
+          <img
+            className="w-8 h-8 md:w-12 md:h-12 object-cover rounded"
+            src={user?.photoURL}
+            alt="user-icon"
+          />
+          <button
+            onClick={handleSignOut}
+            className="font-bold text-white text-sm md:text-base"
+          >
             {"Sign Out"}
           </button>
         </div>

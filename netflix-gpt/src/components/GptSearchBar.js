@@ -61,19 +61,19 @@ Gadar, Sholay, Don, Golmaal, Koi Mil Gaya
   };
 
   return (
-    <div className="pt-[10%] flex justify-center">
+    <div className="pt-[25%] sm:pt-[18%] md:pt-[12%] lg:pt-[10%] flex justify-center px-4">
       <form
-        className="w-1/2 bg-black grid grid-cols-12"
+        className="w-full sm:w-3/4 md:w-1/2 bg-black grid grid-cols-12 rounded-lg"
         onSubmit={(e) => e.preventDefault()}
       >
         <input
           ref={searchText}
           type="text"
-          className="p-4 m-4 col-span-9"
+          className="p-3 md:p-4 m-2 md:m-4 col-span-12 sm:col-span-9 rounded"
           placeholder={lang[langKey].gptSearchPlaceholder}
         />
         <button
-          className="py-2 px-4 m-4 bg-red-700 text-white rounded-lg col-span-3"
+          className="py-2 px-4 m-2 md:m-4 bg-red-700 text-white rounded-lg col-span-12 sm:col-span-3"
           onClick={handleGptSearchClick}
         >
           {lang[langKey].Search}
