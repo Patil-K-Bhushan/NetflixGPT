@@ -1,10 +1,11 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS } from "../utils/constants";
 import { addMovieLogo } from "../utils/movieSlice";
 
 const useMovieImages = (movieId) => {
   const dispatch = useDispatch();
+  const movieLogo = useSelector((store) => store.movies.movieLogo);
 
   useEffect(() => {
     if (!movieId) return;
@@ -34,7 +35,7 @@ const useMovieImages = (movieId) => {
       }
     };
 
-    getMovieImages();
+    !movieLogo && getMovieImages();
   }, [movieId, dispatch]);
 };
 
